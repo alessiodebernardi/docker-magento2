@@ -2,7 +2,7 @@ version: '3.7'
 services:
     db:
         image: "mariadb:${MARIADB_VERSION}"
-        container_name: magento_db
+        container_name: "${APP_NAME}_db"
         environment:
             MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
             MYSQL_DATABASE: "${MYSQL_DATABASE}"
@@ -15,7 +15,7 @@ services:
             context: .
             args:
                 MAGENTO_ZIP_FILE: "${MAGENTO_ZIP_FILE}"
-        container_name: magento_web
+        container_name: "${APP_NAME}_web"
         depends_on:
             - db
         ports:
