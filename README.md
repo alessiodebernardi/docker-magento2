@@ -2,11 +2,7 @@
 > Author: Alessio Debernardi Venon
 
 ## 1. Download Magento
-Download the official Magento zip package https://magento.com/tech-resources/download and place it in the same directory of the Dockerfile.
-
-If this is a new project:
-- Extract the "app" directory from the zip package and place it in the same directory of the Dockerfile.
-- Extract "composer.json" and "composer.lock" files from the zip package and place them in the same directory of the Dockerfile.
+Download the official Magento zip package https://magento.com/tech-resources/download and extract it inside the "web" directory
 
 ## 2. Setup environment variables
 Clone the '.env-example' file and rename it as '.env'.

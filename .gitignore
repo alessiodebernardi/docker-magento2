@@ -1,4 +1,2 @@
 .env
-app/etc/env.php
-app/etc/config.php
-var/log/*.log
+.idea

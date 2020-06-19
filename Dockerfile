@@ -25,17 +25,10 @@ RUN a2enmod rewrite
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
 
-ARG MAGENTO_ZIP_FILE
 # Copy file inside image
-ADD config/vhosts.conf /etc/apache2/sites-enabled/000-default.conf
-ADD config/php.ini /usr/local/etc/php/php.ini
-ADD $MAGENTO_ZIP_FILE /var/www/html/magento-data.zip
-RUN unzip -q /var/www/html/magento-data.zip && rm -f /var/www/html/magento-data.zip
-RUN rm -f /var/www/html/composer.json && rm -f /var/www/html/composer.lock
+ARG VHOST_FILE
+ADD .docker/$VHOST_FILE /etc/apache2/sites-enabled/000-default.conf
+ADD .docker/php.ini /usr/local/etc/php/php.ini
+ADD web /var/www/html
 WORKDIR /var/www/html/
 RUN chmod -R 0777 var/ pub/ generated/ app/
-
-VOLUME /var/www/html/app
-VOLUME /var/www/html/var
-VOLUME /var/www/html/composer.json
-VOLUME /var/www/html/composer.lock
